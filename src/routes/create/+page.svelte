@@ -1,25 +1,18 @@
 <script lang="ts">
 	let people: string[] = [];
-	let name = "";
-	let start_date: string;
-	let end_date: string;
-
-	function submit() {
-
-	}
 </script>
 
-<form>
+<form method="POST">
 	<fieldset>
 		<legend>Basic Info</legend>
 		<label for="name">Schedule Name</label>
-		<input id="name" type="text" bind:value={name} />
+		<input required id="name" name="name" type="text" />
 
 		<label for="start">Start Date</label>
-		<input id="start" type="date" bind:value={start_date} />
+		<input required id="start" name="start" type="date" />
 
-		<label for="start">End Date</label>
-		<input id="start" type="date" bind:value={end_date} />
+		<label for="end">End Date</label>
+		<input required id="end" name="end" type="date" />
 	</fieldset>
 	<fieldset>
 		<legend>People</legend>
@@ -27,13 +20,13 @@
 		<br>
 
 		{#each people as _, i}
-			<input type="text" id="person-{i}-name" bind:value={people[i]} />
+			<input name="person-{i}-name" type="text" id="person-{i}-name" bind:value={people[i]} />
 			<button on:click|preventDefault={() => {people.splice(i, 1); people = people;}}>Remove</button>
 			<br>
 		{/each}
 	</fieldset>
 
-	<button on:click|preventDefault={submit}>
+	<button type="submit">
 		Create
 	</button>
 </form>
